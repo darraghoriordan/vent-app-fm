@@ -21,8 +21,15 @@
 </head>
 
 <body>
+  <div id="header">
+    <span class="header__logo">Vent</span>
+    <ul class="header__menu">
+      <li class="header__menuitem"><a href="/">Home</a> </li>
+      <li class="header__menuitem"><a href="/about.html">About</a></li>
+    </ul>
+  </div>
   <div id="editor">
-    <textarea  v-model="inputvent" autofocus></textarea>
+    <textarea v-model="inputvent" :placeholder="placeholderMessage"></textarea>
   </div>
 </body>
 

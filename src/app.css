@@ -7,6 +7,21 @@ body,
   color: #333;
 }
 
+.header__logo{
+  font-size:2em;
+  margin-right:1em;
+}
+.header__menu {
+  display: inline;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.header__menuitem {
+  display: inline-block;
+}
+
 textarea,
 #editor div {
   display: inline-block;
