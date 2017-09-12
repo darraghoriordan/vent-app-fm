@@ -14,6 +14,8 @@
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.6/marked.min.js" integrity="sha256-mJAzKDq6kSoKqZKnA6UNLtPaIj8zT2mFnWu/GSouhgQ="
     crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.16.2/axios.js" integrity="sha256-JXU9bC6uJttvR5dnFkXWImMeNfVl0MwHM8OdBtdGtJs="
+    crossorigin="anonymous"></script>
   <!--[if lt IE 9]>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
   <![endif]-->
@@ -27,9 +29,16 @@
       <li class="header__menuitem"><a href="/">Home</a> </li>
       <li class="header__menuitem"><a href="/about.html">About</a></li>
     </ul>
+    <span>S: {{rawSentiment}}</span> <span>I: {{rawIntensity}}</span>
   </div>
-  <div id="editor">
-    <textarea v-model="inputvent" :placeholder="placeholderMessage"></textarea>
+  <div id="chatarea">
+    <div id="chatlog">
+      <div class="bot-message">Bot: Hello</div>
+      <div class="customer-message">Me: Hello</div>
+    </div>
+    <div id="editor">
+      <textarea v-model="inputvent" :placeholder="placeholderMessage"></textarea>
+    </div>
   </div>
 </body>
 
