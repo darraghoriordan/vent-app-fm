@@ -9,14 +9,14 @@ new Vue({
   },
   watch: {
     inputvent: function (ventText) {
-      this.ventamatic()
+      //this.ventamatic()
     }
   },
   methods: {
     testing: function () {
-      return window.location.hostname !== "ventapp.darraghoriordan.com";
+      return false;//window.location.hostname !== "ventapp.darraghoriordan.com";
     },
-    ventamatic: _.debounce(function (e) {
+    ventamatic: function () {
       if (this.inputvent == '') {
         return;
       }
@@ -24,7 +24,6 @@ new Vue({
       this.placeholderMessage = this.selectNewPlaceholderMessage();
       var vm = this
       if (!this.testing()) {
-        console.log("calling api with: " + this.inputvent);
         axios.post('https://language.googleapis.com/v1beta2/documents:analyzeEntitySentiment?key=AIzaSyAWKv1YUXcdBVvE0WRXfS_ArCnDJlgGzO8', {
             "encodingType": "UTF8",
             "document": {
@@ -34,29 +33,30 @@ new Vue({
           })
           .then(function (response) {
             const entities = response.data.entities;
-            let chatnode = document.createElement("div");
-            chatnode.appendChild(document.createTextNode("Bot: I detected the following entities and sentiments:"));
-            chatnode.appendChild(document.createElement("br"))
+            let responseNode = document.createElement("div");
+            responseNode.appendChild(document.createTextNode("Bot: I detected the following entities and sentiments:"));
+            responseNode.appendChild(document.createElement("br"))
 
             entities.forEach((entity) => {
-              chatnode.appendChild(document.createTextNode(`  Name: ${entity.name}`));
-              chatnode.appendChild(document.createElement("br"))
-              chatnode.appendChild(document.createTextNode(`  Type: ${entity.type}`));
-              chatnode.appendChild(document.createElement("br"))
-              chatnode.appendChild(document.createTextNode(`  Score: ${entity.sentiment.score}`));
-              chatnode.appendChild(document.createElement("br"))
-              chatnode.appendChild(document.createTextNode(`  Magnitude: ${entity.sentiment.magnitude}`));
-              chatnode.appendChild(document.createTextNode("--------------------------------"));
+              responseNode.appendChild(document.createTextNode(`  Name: ${entity.name}`));
+              responseNode.appendChild(document.createElement("br"))
+              responseNode.appendChild(document.createTextNode(`  Type: ${entity.type}`));
+              responseNode.appendChild(document.createElement("br"))
+              responseNode.appendChild(document.createTextNode(`  Score: ${entity.sentiment.score}`));
+              responseNode.appendChild(document.createElement("br"))
+              responseNode.appendChild(document.createTextNode(`  Magnitude: ${entity.sentiment.magnitude}`));
+              responseNode.appendChild(document.createTextNode("--------------------------------"));
+              responseNode.appendChild(document.createElement("br"))
             });
-            chatnode.className += " bot-message"
-            document.getElementById("chatlog").appendChild(chatnode)
+            let responseContainer = document.getElementById("response")
+            responseContainer.appendChild(responseNode)
           })
           .catch(function (error) {
             console.error('Error! Could not reach the API. ' + error)
           })
       }
       this.inputvent = '';
-    }, 3000),
+    },
     selectNewPlaceholderMessage: function () {
       const messages = ["start venting...", "keep going...", "I need to hear more...", "You'll feel better soon..."];
       let selectedIndex = Math.floor((Math.random() * messages.length));

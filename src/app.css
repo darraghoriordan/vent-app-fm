@@ -22,40 +22,19 @@ body{
   display: inline-block;
 }
 
-#chatarea {
-  width: 60%;
-  height: 100%;
-}
-
-#chatlog {
-  height: 90%;
-  border-bottom: #333 1px solid;
-  display: flex;
-  overflow:auto;
-  min-height:100px;
-  flex-direction: column;
-}
-#chatlog > :first-child {
-  margin-top: auto !important;
-}
-.bot-message{
-background-color: lightgrey;
-}
-.customer-message{
-  background-color: lightblue;
-}
-#editor div {
-  display: inline-block;
-  width: 100%;
+#editor {
+  width: 90%;
+  margin:auto;
   vertical-align: top;
   box-sizing: border-box;
   padding: 0 20px;
+  height:100%;
 }
 
 textarea {
+  height:100%;
   vertical-align: top;
   box-sizing: border-box;
-  display: inline-block;
   width: 100%;
   border: none;
   border-right: 1px solid #ccc;
@@ -64,8 +43,4 @@ textarea {
   background-color: #f6f6f6;
   font-size: 14px;
   font-family: 'Monaco', courier, monospace;
-}
-
-code {
-  color: #f66;
 }
